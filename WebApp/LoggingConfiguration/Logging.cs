@@ -12,9 +12,10 @@ public static class Logging
     
     public static WebApplicationBuilder UseSerilog(this WebApplicationBuilder builder)
     {
-        builder.Host.UseSerilog((context, configuration) =>
+        builder.Host.UseSerilog((context, loggerConfiguration) =>
         {
-            configuration.ReadFrom.Configuration(context.Configuration);
+            var logSettings = LogSettings.FromConfiguration(context.Configuration);
+            loggerConfiguration.ApplyLogSettings(logSettings);
         });
         return builder;
     }
