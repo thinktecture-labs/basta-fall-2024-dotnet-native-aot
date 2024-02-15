@@ -11,12 +11,12 @@ public static class Program
 {
     public static async Task<int> Main(string[] args)
     {
-        Log.Logger = Logging.CreateLogger();
+        Log.Logger = Logging.CreateBootstrapLogger();
         try
         {
             var app = WebApplication
                .CreateSlimBuilder(args)
-               .ConfigureServices(Log.Logger)
+               .ConfigureServices()
                .Build()
                .ConfigureMiddleware();
             await app.RunAsync();
@@ -33,3 +33,4 @@ public static class Program
         }
     }
 }
+

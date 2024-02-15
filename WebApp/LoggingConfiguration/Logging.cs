@@ -1,21 +1,21 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Serilog;
-using Serilog.Events;
 
 namespace WebApp.LoggingConfiguration;
 
 public static class Logging
 {
-    public static ILogger CreateLogger() =>
+    public static ILogger CreateBootstrapLogger() =>
         new LoggerConfiguration()
-           .MinimumLevel.Information()
-           .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
            .WriteTo.Console()
-           .CreateLogger();
+           .CreateBootstrapLogger();
     
-    public static WebApplicationBuilder UseSerilog(this WebApplicationBuilder builder, ILogger logger)
+    public static WebApplicationBuilder UseSerilog(this WebApplicationBuilder builder)
     {
-        builder.Host.UseSerilog(logger);
+        builder.Host.UseSerilog((context, configuration) =>
+        {
+            configuration.ReadFrom.Configuration(context.Configuration);
+        });
         return builder;
     }
 }
