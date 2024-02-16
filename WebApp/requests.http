@@ -3,3 +3,6 @@ GET {{baseAddress}}
 
 ### Reflection
 GET {{baseAddress}}/api/reflection
+
+### UnboundReflection
+GET {{baseAddress}}/api/reflection/unbound

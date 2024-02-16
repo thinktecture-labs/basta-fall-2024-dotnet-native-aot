@@ -11,6 +11,7 @@ public static class Middleware
         app.UseSerilogRequestLogging();
         app.UseRouting();
         app.MapReflectionEndpoint();
+        app.MapUnboundReflectionEndpoint();
         app.MapHealthChecks("/");
         return app;
     }
