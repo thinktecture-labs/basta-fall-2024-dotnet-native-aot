@@ -1,2 +1,5 @@
 ﻿### Health
 GET {{baseAddress}}
+
+### Reflection
+GET {{baseAddress}}/api/reflection
