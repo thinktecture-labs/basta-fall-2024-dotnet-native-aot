@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Serilog;
 using WebApp.CompositionRoot;
+using WebApp.DatabaseAccess;
 using WebApp.LoggingConfiguration;
 
 namespace WebApp;
@@ -19,6 +20,7 @@ public static class Program
                .ConfigureServices()
                .Build()
                .ConfigureMiddleware();
+            await app.SetupDatabaseAsync();
             await app.RunAsync();
             return 0;
         }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using WebApp.CommonValidation;
+using WebApp.Contacts;
+using WebApp.DatabaseAccess;
 using WebApp.JsonAccess;
 using WebApp.LoggingConfiguration;
 using WebApp.ToDo;
@@ -13,8 +16,11 @@ public static class DependencyInjection
         builder.UseSerilog();
         builder
            .Services
+           .AddDatabaseAccess(builder.Configuration)
            .AddJsonSerializationContext()
+           .AddCommonValidation()
            .AddToDoModule()
+           .AddContactsModule()
            .AddHealthChecks();
         return builder;
     }
