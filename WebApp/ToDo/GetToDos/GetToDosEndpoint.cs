@@ -19,7 +19,7 @@ public static class GetToDosEndpoint
     )
     {
         var toDoList = await session.GetToDoListAsync(cancellationToken);
-        var dtoList = ToDoListDto.FromToDoItems(toDoList);
+        var dtoList = toDoList.MapToDtoList();
         return Results.Ok(dtoList);
     }
 }

@@ -15,6 +15,7 @@
         <PackageReference Include="Light.SharedCore" Version="1.0.0" />
         <PackageReference Include="Npgsql" Version="8.0.2" />
         <PackageReference Include="Polly.Core" Version="8.3.0" />
+        <PackageReference Include="Riok.Mapperly" Version="3.4.0" ExcludeAssets="runtime" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
