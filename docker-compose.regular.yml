@@ -1,0 +1,19 @@
+services:
+  webapp:
+    build:
+      context: ./WebApp
+      dockerfile: Dockerfile-alpine-regular
+    container_name: webapp-regular
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+      - LogSettings__FormattingType=Text
+      - LogSettings__DefaultLevel=Warning
+      - LogSettings__Overrides__0__Namespace=Microsoft.AspNetCore
+      - LogSettings__Overrides__0__Level=Warning
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: 1G

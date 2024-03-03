@@ -11,6 +11,14 @@
         <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
         <PackageReference Include="FluentValidation" Version="11.9.0" />
         <PackageReference Include="Light.GuardClauses" Version="11.0.0" />
+        <PackageReference Include="Light.SharedCore" Version="1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Remove="http-client.env.json" />
+        <None Include="http-client.env.json">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

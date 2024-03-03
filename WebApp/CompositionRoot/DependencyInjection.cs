@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.JsonAccess;
 using WebApp.LoggingConfiguration;
+using WebApp.ToDo;
 
 namespace WebApp.CompositionRoot;
 
@@ -13,6 +14,7 @@ public static class DependencyInjection
         builder
            .Services
            .AddJsonSerializationContext()
+           .AddToDoModule()
            .AddHealthChecks();
         return builder;
     }

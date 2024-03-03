@@ -24,14 +24,14 @@ public static class LoggerConfigurationExtensions
                 throw new ArgumentException("Invalid log formatter type", nameof(settings));
         }
 
+        loggerConfiguration.MinimumLevel.Is(settings.DefaultLevel);
+
         if (!settings.Overrides.IsNullOrEmpty())
         {
             foreach (var logLevelOverride in settings.Overrides)
             {
                 loggerConfiguration.MinimumLevel.Override(logLevelOverride.Namespace, logLevelOverride.Level);
             }
-
-            return loggerConfiguration;
         }
 
         return loggerConfiguration;

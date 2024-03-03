@@ -1,0 +1,9 @@
+bin/
+obj/
+Properties/
+appsettings.json
+appsettings.Development.json
+http-client.env.json
+requests.http
+Dockerfile
+.dockerignore
