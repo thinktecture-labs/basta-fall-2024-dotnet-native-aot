@@ -16,6 +16,11 @@
         <PackageReference Include="Npgsql" Version="8.0.2" />
         <PackageReference Include="Polly.Core" Version="8.3.0" />
         <PackageReference Include="Riok.Mapperly" Version="3.4.0" ExcludeAssets="runtime" PrivateAssets="all" />
+        <PackageReference Include="Mediator.SourceGenerator" Version="2.1.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
     </ItemGroup>
 
     <ItemGroup>

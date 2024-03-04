@@ -21,6 +21,7 @@ public static class DependencyInjection
            .AddCommonValidation()
            .AddToDoModule()
            .AddContactsModule()
+           .AddMediator(options => options.ServiceLifetime = ServiceLifetime.Transient)
            .AddHealthChecks();
         return builder;
     }
