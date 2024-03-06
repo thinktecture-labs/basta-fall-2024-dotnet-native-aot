@@ -10,6 +10,6 @@ public sealed class LogSettingsValidator : AbstractValidator<LogSettings>
         RuleFor(x => x.DefaultLevel).IsInEnum();
         RuleForEach(x => x.Overrides).SetValidator(logLevelOverrideValidator).When(x => x.Overrides is not null);
     }
-    
+
     public static LogSettingsValidator Create() => new (new LogLevelOverrideValidator());
 }

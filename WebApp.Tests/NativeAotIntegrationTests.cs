@@ -8,6 +8,7 @@ using DotNet.Testcontainers.Containers;
 using DotNet.Testcontainers.Images;
 using DotNet.Testcontainers.Networks;
 using FluentAssertions;
+using Serilog;
 using Testcontainers.PostgreSql;
 using WebApp.Contacts.GetContacts;
 using Xunit;
@@ -18,14 +19,14 @@ namespace WebApp.Tests;
 public sealed class NativeAotIntegrationTests : IAsyncLifetime
 {
     private readonly INetwork _network;
-    private readonly ITestOutputHelper _output;
+    private readonly ILogger _logger;
     private readonly PostgreSqlContainer _postgresContainer;
     private readonly IContainer _webAppContainer;
     private readonly IFutureDockerImage _webAppImage;
 
     public NativeAotIntegrationTests(ITestOutputHelper output)
     {
-        _output = output;
+        _logger = output.CreateTestLogger();
         
         _network = new NetworkBuilder().Build();
 
@@ -62,25 +63,22 @@ public sealed class NativeAotIntegrationTests : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        
-        _output.WriteLine("Creating network...");
+        _logger.Information("Creating network...");
         await _network.CreateAsync();
-        _output.WriteLine("Starting Postgres container...");
+        _logger.Information("Starting Postgres container...");
         await _postgresContainer.StartAsync();
-        _output.WriteLine("Creating web app image...");
+        _logger.Information("Creating web app image...");
         await _webAppImage.CreateAsync();
-        _output.WriteLine("Starting web app...");
+        _logger.Information("Starting web app...");
         await _webAppContainer.StartAsync();
     }
 
     public async Task DisposeAsync()
     {
-        await _webAppContainer.StopAsync();
         await _webAppContainer.DisposeAsync();
-        await _postgresContainer.StopAsync();
         await _postgresContainer.DisposeAsync();
-        await _network.DeleteAsync();
-        await _webAppImage.DeleteAsync();
+        await _network.DisposeAsync();
+        await _webAppImage.DisposeAsync();
     }
 
     [Fact]
@@ -98,7 +96,7 @@ public sealed class NativeAotIntegrationTests : IAsyncLifetime
         contacts.Should().HaveCount(3);
         foreach (var contact in contacts!)
         {
-            _output.WriteLine(contact.ToString());
+            _logger.Information("{Contact}", contact);
         }
     }
 }

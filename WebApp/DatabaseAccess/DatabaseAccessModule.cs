@@ -34,12 +34,14 @@ public static class DatabaseAccessModule
     public static ValueTask SetupDatabaseAsync(this WebApplication app, CancellationToken cancellationToken = default)
     {
         var resiliencyPipeline = new ResiliencePipelineBuilder()
-           .AddRetry(new RetryStrategyOptions
-            {
-                MaxRetryAttempts = 3,
-                BackoffType = DelayBackoffType.Exponential,
-                Delay = TimeSpan.FromSeconds(1)
-            })
+           .AddRetry(
+                new RetryStrategyOptions
+                {
+                    MaxRetryAttempts = 3,
+                    BackoffType = DelayBackoffType.Exponential,
+                    Delay = TimeSpan.FromSeconds(1)
+                }
+            )
            .Build();
 
         return resiliencyPipeline.ExecuteAsync(

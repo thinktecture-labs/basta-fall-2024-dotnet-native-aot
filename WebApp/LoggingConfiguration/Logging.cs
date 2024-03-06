@@ -9,14 +9,16 @@ public static class Logging
         new LoggerConfiguration()
            .WriteTo.Console()
            .CreateBootstrapLogger();
-    
+
     public static WebApplicationBuilder UseSerilog(this WebApplicationBuilder builder)
     {
-        builder.Host.UseSerilog((context, loggerConfiguration) =>
-        {
-            var logSettings = LogSettings.FromConfiguration(context.Configuration);
-            loggerConfiguration.ApplyLogSettings(logSettings);
-        });
+        builder.Host.UseSerilog(
+            (context, loggerConfiguration) =>
+            {
+                var logSettings = LogSettings.FromConfiguration(context.Configuration);
+                loggerConfiguration.ApplyLogSettings(logSettings);
+            }
+        );
         return builder;
     }
 }

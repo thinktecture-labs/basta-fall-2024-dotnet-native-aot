@@ -24,18 +24,15 @@ public static class GetToDosEndpoint
 
 public sealed class ToDoRequest : IRequest<List<ToDoListDto>>
 {
-    public static ToDoRequest Instance { get; } = new();
+    public static ToDoRequest Instance { get; } = new ();
 }
 
 public sealed class ToDoRequestHandler : IRequestHandler<ToDoRequest, List<ToDoListDto>>
 {
     private readonly IGetToDosSession _session;
 
-    public ToDoRequestHandler(IGetToDosSession session)
-    {
-        _session = session;
-    }
-    
+    public ToDoRequestHandler(IGetToDosSession session) => _session = session;
+
     public async ValueTask<List<ToDoListDto>> Handle(ToDoRequest request, CancellationToken cancellationToken)
     {
         var toDoList = await _session.GetToDoListAsync(cancellationToken);

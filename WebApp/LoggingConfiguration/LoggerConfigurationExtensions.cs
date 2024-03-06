@@ -18,7 +18,7 @@ public static class LoggerConfigurationExtensions
                 loggerConfiguration.WriteTo.Console();
                 break;
             case LogFormattingType.CompactJson:
-                loggerConfiguration.WriteTo.Console(formatter: new CompactJsonFormatter());
+                loggerConfiguration.WriteTo.Console(new CompactJsonFormatter());
                 break;
             default:
                 throw new ArgumentException("Invalid log formatter type", nameof(settings));

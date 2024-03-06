@@ -16,8 +16,8 @@ public interface IUpsertContactSession : IAsyncSession
     );
 
     Task UpsertContactAsync(ContactDetailDto dto, CancellationToken cancellationToken = default);
-    
+
     Task UpsertAddressAsync(Address address, CancellationToken cancellationToken = default);
-    
+
     Task RemoveAddressAsync(Guid addressId, CancellationToken cancellationToken = default);
 }

@@ -14,6 +14,7 @@ public sealed record ToDoListDto(Guid Id, string Title, DateTime CreatedAtUtc, D
             var dto = new ToDoListDto(toDoItem.Id, toDoItem.Title, toDoItem.CreatedAtUtc, toDoItem.CompletedAtUtc);
             dtoList.Add(dto);
         }
+
         return dtoList;
     }
 }
