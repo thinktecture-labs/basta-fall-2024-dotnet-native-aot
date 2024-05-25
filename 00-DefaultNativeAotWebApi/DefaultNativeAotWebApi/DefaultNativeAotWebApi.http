@@ -1,0 +1,11 @@
+@DefaultNativeAotWebApi_HostAddress = http://localhost:5000
+
+GET {{DefaultNativeAotWebApi_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{DefaultNativeAotWebApi_HostAddress}}/todos/1
+Accept: application/json
+
+###
