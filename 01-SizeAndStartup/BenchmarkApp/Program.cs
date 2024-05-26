@@ -28,10 +28,10 @@ public static class Program
         }
 
         var intervalBetweenIterations = GetIntervalBetweenIterations(configuration);
+        var numberOfIterations = GetNumberOfIterations(configuration);
 
-        const int numberOfExecutions = 100;
-        List<ExecuteResult> executionResults = new (numberOfExecutions);
-        for (var i = 0; i < numberOfExecutions; i++)
+        List<ExecuteResult> executionResults = new (numberOfIterations);
+        for (var i = 0; i < numberOfIterations; i++)
         {
             var processStartInfo = new ProcessStartInfo
             {
@@ -227,6 +227,11 @@ public static class Program
         TimeSpan.TryParse(configuration["IntervalBetweenIterations"], out var parsedInterval) ?
             parsedInterval :
             TimeSpan.Zero;
+    
+    private static int GetNumberOfIterations(IConfiguration configuration) =>
+        int.TryParse(configuration["NumberOfIterations"], out var parsedIterations) ?
+            parsedIterations :
+            100;
 }
 
 public readonly record struct ExecuteResult(
