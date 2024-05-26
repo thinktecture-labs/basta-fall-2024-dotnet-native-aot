@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-SizeAndStartup", "01-SizeAndStartup", "{A7E275CD-C8FA-424C-AE71-87387127FF5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActualWebApp", "01-SizeAndStartup\ActualWebApp\ActualWebApp.csproj", "{8A9346F1-EAB3-4660-BFDA-DFABA8E8A387}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenchmarkApp", "01-SizeAndStartup\BenchmarkApp\BenchmarkApp.csproj", "{7C7A54E4-8E2B-4392-96EB-332639C2245E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00-DefaultNativeAotWebApi", "00-DefaultNativeAotWebApi", "{B4F09675-CCB6-4AE1-8F9A-4E7B4691EDE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultNativeAotWebApi", "00-DefaultNativeAotWebApi\DefaultNativeAotWebApi\DefaultNativeAotWebApi.csproj", "{1F34EED2-7020-4124-B3CA-4AB1AE272427}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A9346F1-EAB3-4660-BFDA-DFABA8E8A387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9346F1-EAB3-4660-BFDA-DFABA8E8A387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9346F1-EAB3-4660-BFDA-DFABA8E8A387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9346F1-EAB3-4660-BFDA-DFABA8E8A387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7A54E4-8E2B-4392-96EB-332639C2245E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7A54E4-8E2B-4392-96EB-332639C2245E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7A54E4-8E2B-4392-96EB-332639C2245E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7A54E4-8E2B-4392-96EB-332639C2245E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F34EED2-7020-4124-B3CA-4AB1AE272427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F34EED2-7020-4124-B3CA-4AB1AE272427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F34EED2-7020-4124-B3CA-4AB1AE272427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F34EED2-7020-4124-B3CA-4AB1AE272427}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8A9346F1-EAB3-4660-BFDA-DFABA8E8A387} = {A7E275CD-C8FA-424C-AE71-87387127FF5A}
+		{7C7A54E4-8E2B-4392-96EB-332639C2245E} = {A7E275CD-C8FA-424C-AE71-87387127FF5A}
+		{1F34EED2-7020-4124-B3CA-4AB1AE272427} = {B4F09675-CCB6-4AE1-8F9A-4E7B4691EDE8}
+	EndGlobalSection
+EndGlobal
