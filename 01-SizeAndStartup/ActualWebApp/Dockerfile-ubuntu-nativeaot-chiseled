@@ -1,0 +1,19 @@
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
+RUN apt update && apt upgrade -y
+RUN apt install -y clang zlib1g-dev
+WORKDIR /code
+COPY ./ActualWebApp.csproj .
+ARG RUNTIME_ID=linux-x64
+RUN dotnet restore -r $RUNTIME_ID
+COPY . .
+RUN dotnet publish \
+    -c Release \
+    -r $RUNTIME_ID \
+    -o /app \
+    --no-restore 
+
+FROM mcr.microsoft.com/dotnet/nightly/runtime-deps:8.0-jammy-chiseled-aot AS final
+WORKDIR /app
+COPY --from=build /app/ActualWebApp ./ActualWebApp
+USER app
+ENTRYPOINT ["./ActualWebApp"]

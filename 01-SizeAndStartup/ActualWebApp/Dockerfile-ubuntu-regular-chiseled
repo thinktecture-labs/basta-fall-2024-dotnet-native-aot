@@ -1,0 +1,16 @@
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
+WORKDIR /code
+COPY ./ActualWebApp.csproj .
+RUN dotnet restore
+COPY . .
+RUN dotnet publish \
+    -c Release \
+    -o /app \
+    /p:PublishAot=false \
+    --no-restore 
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled AS final
+WORKDIR /app
+COPY --from=build /app .
+USER app
+ENTRYPOINT ["dotnet", "ActualWebApp.dll"]
