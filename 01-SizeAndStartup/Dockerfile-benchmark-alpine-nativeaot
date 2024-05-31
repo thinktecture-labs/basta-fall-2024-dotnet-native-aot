@@ -1,0 +1,36 @@
+FROM alpine:3.19 AS prepare
+WORKDIR /app
+RUN adduser -u 1000 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine3.19 AS build
+RUN apk update && apk upgrade
+RUN apk add --no-cache clang build-base zlib-dev
+WORKDIR /code
+
+COPY ./ActualWebApp/ActualWebApp.csproj ./ActualWebApp/ActualWebApp.csproj
+COPY ./BenchmarkApp/BenchmarkApp.csproj ./BenchmarkApp/BenchmarkApp.csproj
+ARG RUNTIME_ID=linux-musl-x64
+RUN dotnet restore ./ActualWebApp/ActualWebApp.csproj -r $RUNTIME_ID
+RUN dotnet restore ./BenchmarkApp/BenchmarkApp.csproj -r $RUNTIME_ID
+
+COPY ./ActualWebApp ./ActualWebApp
+RUN dotnet publish ./ActualWebApp/ActualWebApp.csproj \
+    -c Release \
+    -r $RUNTIME_ID \
+    -o /actual-web-app \
+    --no-restore
+RUN rm /actual-web-app/*.dbg
+
+COPY ./BenchmarkApp ./BenchmarkApp
+RUN dotnet publish ./BenchmarkApp/BenchmarkApp.csproj \
+    -c Release \
+    -r $RUNTIME_ID \
+    -o /benchmark-app \
+    --no-restore
+RUN rm /benchmark-app/*.dbg /benchmark-app/appsettings.json && \
+    cp ./BenchmarkApp/appsettings.docker.json /benchmark-app/appsettings.json
+
+FROM prepare AS final
+COPY --chown=appuser --from=build /actual-web-app ./actual-web-app
+COPY --chown=appuser --from=build /benchmark-app ./benchmark-app
