@@ -155,6 +155,7 @@ public static class Program
               Plotly.newPlot('working-set', [workingSetTrace], workingSetLayout);
               </script>
               </body>
+              </html>
               """;
 
         writer.WriteLine(content);
