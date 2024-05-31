@@ -29,19 +29,20 @@ public static class Program
 
         var intervalBetweenIterations = GetIntervalBetweenIterations(configuration);
         var numberOfIterations = GetNumberOfIterations(configuration);
-
+        
+        var processStartInfo = new ProcessStartInfo
+        {
+            FileName = targetExecutable,
+            RedirectStandardOutput = true,
+            RedirectStandardInput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
         List<ExecuteResult> executionResults = new (numberOfIterations);
         for (var i = 0; i < numberOfIterations; i++)
         {
-            var processStartInfo = new ProcessStartInfo
-            {
-                FileName = targetExecutable,
-                RedirectStandardOutput = true,
-                RedirectStandardInput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+            
             Console.WriteLine($"Performing iteration {i + 1}...");
             var externalTimestamp = Stopwatch.GetTimestamp();
             ExecuteResult? executionResult;
