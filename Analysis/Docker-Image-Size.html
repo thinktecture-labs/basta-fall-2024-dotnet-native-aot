@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Docker-Image-Größe</title>
+</head>
+<body>
+<div id="chart" style="width: 1500px; height: 700px"></div>
+
+<script>
+    const xAxisValues = ['Alpine 3.19 x64', 'Ubuntu 22.04 x64', "Alpine 3.19 arm64", "Ubuntu 22.04 arm64", "Ubuntu 22.04 Chiseled x64", "Ubuntu 22.04 Chiseled arm64"];
+    const nativeAotData = [16.84, 84.38, 17.52, 76.50, 20.06, 17.81];
+    const regularData = [106.93, 206.23, 115.74, 206.50, 104.40, 110.46];
+    const mapText = values => values.map(v => `${v} MB`);
+    const data = [
+        {
+            name: 'Native AOT',
+            x: xAxisValues,
+            y: nativeAotData,
+            type: 'bar',
+            text: mapText(nativeAotData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,191,62)'
+            }
+        },
+        {
+            name: 'Reguläre CLR',
+            x: xAxisValues,
+            y: regularData,
+            type: 'bar',
+            text: mapText(regularData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,136,209)'
+            }
+        }
+    ];
+    
+    const layout = {
+        title: 'Docker-Image-Größe',
+        barmode: 'group',
+        yaxis: {
+            title: 'Größe in MB'
+        }
+    }
+    
+    Plotly.newPlot('chart', data, layout);
+</script>
+</body>
+</html>
