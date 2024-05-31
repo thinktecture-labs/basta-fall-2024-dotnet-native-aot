@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Memory-Verbrauch x64</title>
+</head>
+<body>
+<div id="chart" style="width: 1500px; height: 700px"></div>
+
+<script>
+    const xAxisValues = ['Windows 11 x64', 'Alpine 3.19 x64 in Docker', 'Ubuntu 22.04 x64 in Docker'];
+    
+    const nativeAotData = [22.49, 18.72, 29.88];
+    const nativeAotSdData = [0.08, 0.14, 0.84];
+    
+    const regularData = [39.07, 53.27, 54.37];
+    const regularSdData = [0.1, 0.27, 1.05];
+    
+    const mapText = values => values.map(v => `${v} MB`);
+    const data = [
+        {
+            name: 'Native AOT',
+            x: xAxisValues,
+            y: nativeAotData,
+            type: 'bar',
+            text: mapText(nativeAotData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,191,62)'
+            },
+            error_y: {
+                type: 'data',
+                array: nativeAotSdData,
+                visible: true
+            }
+        },
+        {
+            name: 'Reguläre CLR',
+            x: xAxisValues,
+            y: regularData,
+            type: 'bar',
+            text: mapText(regularData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,136,209)'
+            },
+            error_y: {
+                type: 'data',
+                array: regularSdData,
+                visible: true
+            }
+        }
+    ];
+
+    const layout = {
+        title: 'Memory-Verbrauch nach App-Start x64',
+        barmode: 'group',
+        yaxis: {
+            title: 'Verbrauch in MB'
+        }
+    }
+
+    Plotly.newPlot('chart', data, layout);
+
+</script>
+</body>
+</html>

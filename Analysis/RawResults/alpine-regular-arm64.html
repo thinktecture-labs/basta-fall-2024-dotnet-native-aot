@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Execution Results 2024-05-31 14-38-40</title>
+</head>
+<body>
+<h1>Execution Results 2024-05-31 14-38-40</h1>
+<h2>Startup Time</h2>
+<div><strong>Mean External Startup Time: 733.13ms</strong></div>
+<div><strong>External Startup Time SD: 129.62ms</strong></div>
+<div><strong>Mean Internal Startup Time: 606.64ms</strong></div>
+<div><strong>Internal Startup Time SD: 113.24ms</strong></div>
+<div id="elapsed-time" style="width: 800px; height: 700px"></div>
+<h2>Working Set</h2>
+<div><strong>Mean Working Set: 54.02MB</strong></div>
+<div><strong>Working Set SD: 0.17MB</strong></div>
+<div id="working-set" style="width: 800px; height: 700px"></div>
+<script>
+    const x = Array.from({ length: 100 }, (_, i) => i + 1);
+    const externalElapsed = [1360.83, 700.23, 701.91, 740.98, 691.90, 694.08, 735.45, 701.75, 718.22, 696.62, 695.96, 696.06, 695.10, 764.96, 710.22, 1821.98, 701.88, 705.57, 696.22, 764.94, 784.86, 698.23, 741.74, 715.43, 696.98, 743.63, 701.65, 707.01, 750.15, 708.54, 700.63, 698.88, 763.44, 693.82, 697.47, 742.25, 712.36, 694.34, 737.83, 708.61, 698.76, 705.43, 706.87, 706.22, 693.29, 765.33, 699.69, 694.62, 735.10, 713.84, 692.32, 803.53, 700.59, 695.10, 702.26, 695.85, 700.82, 782.08, 763.35, 700.92, 705.99, 735.30, 695.10, 703.55, 722.74, 703.23, 699.34, 699.40, 701.17, 699.92, 693.17, 762.23, 701.87, 698.10, 737.02, 698.39, 704.35, 723.79, 692.83, 696.10, 704.46, 703.33, 712.34, 696.24, 752.00, 695.94, 707.37, 742.70, 781.17, 699.22, 739.82, 720.97, 698.06, 755.80, 794.83, 704.12, 708.25, 696.78, 685.64, 691.78];
+    const internalElapsed = [691.79, 582.34, 587.20, 623.92, 576.16, 578.02, 619.95, 584.41, 601.89, 579.16, 581.27, 580.43, 578.73, 583.18, 590.58, 1705.29, 584.47, 588.83, 581.05, 583.60, 668.95, 581.26, 625.95, 597.88, 580.25, 627.34, 585.45, 589.48, 630.33, 592.98, 585.24, 582.67, 581.29, 577.84, 582.25, 625.59, 595.84, 579.42, 621.09, 592.52, 583.26, 590.18, 591.61, 591.34, 579.00, 583.42, 584.44, 580.00, 618.11, 595.56, 576.38, 686.45, 585.97, 579.20, 588.94, 579.81, 585.64, 664.42, 579.65, 586.29, 590.37, 621.50, 579.28, 588.40, 606.04, 586.02, 585.11, 584.16, 583.99, 583.89, 579.01, 581.28, 586.87, 580.84, 621.99, 583.30, 589.13, 609.44, 579.46, 580.03, 587.80, 586.81, 588.58, 579.22, 578.03, 575.44, 592.29, 623.75, 664.74, 581.07, 623.91, 601.79, 582.97, 639.61, 672.56, 583.79, 589.67, 568.38, 571.71, 576.12];
+    const externalElapsedTrace = {
+        x,
+        y: externalElapsed,
+        type: 'scatter',
+        name: 'External Startup Time',
+        line: {
+            color: 'rgb(42,223,255)'
+        }
+    };
+    const internalElapsedTrace = {
+        x,
+        y: internalElapsed,
+        type: 'scatter',
+        name: 'Internal Startup Time',
+        line: {
+            color: 'rgb(175,14,255)'
+        }
+    };
+    const elapsedLayout = {
+        title: 'Startup Time in ms',
+        xaxis: {
+            title: 'Iteration'
+        },
+        yaxis: {
+            title: 'Elapsed Time (ms)',
+            range: [0, Math.max(...externalElapsed, ...internalElapsed) + 10],
+            autorange: false
+        }
+    };
+    Plotly.newPlot('elapsed-time', [externalElapsedTrace, internalElapsedTrace], elapsedLayout);
+    const workingSetData = [53.98, 54.25, 53.92, 53.93, 54.28, 54.13, 53.87, 54.15, 53.80, 54.25, 54.01, 54.20, 53.90, 53.95, 53.87, 54.10, 53.97, 54.22, 54.02, 54.27, 54.15, 53.87, 54.06, 54.23, 53.91, 54.11, 54.08, 53.84, 53.88, 53.93, 53.66, 54.22, 54.16, 53.99, 54.35, 53.96, 53.89, 54.00, 54.33, 53.79, 54.01, 54.06, 54.04, 54.29, 54.15, 53.98, 53.85, 53.87, 53.72, 53.89, 53.80, 54.33, 54.18, 53.67, 53.88, 54.02, 53.96, 54.07, 53.64, 54.11, 54.02, 54.13, 54.09, 54.03, 53.96, 53.97, 53.83, 53.90, 53.95, 54.19, 54.07, 54.30, 54.14, 54.33, 53.80, 53.96, 54.33, 54.33, 53.76, 53.94, 54.17, 54.08, 53.95, 53.91, 54.20, 54.06, 54.08, 53.90, 53.90, 54.16, 53.77, 53.73, 54.09, 53.97, 53.63, 54.11, 54.09, 54.04, 54.02, 53.78];
+    const workingSetTrace = {
+        x,
+        y: workingSetData,
+        type: 'scatter',
+        name: 'Working Set Size',
+        line: {
+            color: 'rgb(255,116,15)'
+        }
+    };
+    const workingSetLayout = {
+        title: 'Working Set Size',
+        xaxis: {
+            title: 'Iteration'
+        },
+        yaxis: {
+            title: 'Working Set Size (MB)',
+            range: [0, Math.max(...workingSetData) + 10],
+            autorange: false
+        }
+    };
+    Plotly.newPlot('working-set', [workingSetTrace], workingSetLayout);
+</script>
+</body>
+</html>

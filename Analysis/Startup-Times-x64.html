@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Startup-Zeiten x64</title>
+</head>
+<body>
+<div id="chart" style="width: 1500px; height: 700px"></div>
+
+<script>
+    const xAxisValues = ['Windows 11 x64', 'Alpine 3.19 x64 in Docker', 'Ubuntu 22.04 x64 in Docker'];
+    
+    const nativeAotInternalData = [16.89, 14.37, 15.00];
+    const nativeAotInternalSdData = [0.47, 0.39, 0.61];
+    
+    const nativeAotExternalData = [39.73, 25.65, 26.33];
+    const nativeAotExternalSdData = [7.39, 5.21, 3.46];
+    
+    const regularInternalData = [78.94, 159.27, 150.05];
+    const regularInternalSdData = [2.6, 25.91, 27.93];
+    
+    const regularExternalData = [116.47, 182.65, 212.77];
+    const regularExternalSdData = [3.5, 26.30, 30.15];
+    const mapText = values => values.map(v => `${v} ms`);
+    const data = [
+        {
+            name: 'Native AOT Intern',
+            x: xAxisValues,
+            y: nativeAotInternalData,
+            type: 'bar',
+            text: mapText(nativeAotInternalData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,191,62)'
+            },
+            error_y: {
+                type: 'data',
+                array: nativeAotInternalSdData,
+                visible: true
+            }
+        },
+        {
+            name: 'Native AOT Extern',
+            x: xAxisValues,
+            y: nativeAotExternalData,
+            type: 'bar',
+            text: mapText(nativeAotExternalData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,106,34)'
+            },
+            error_y: {
+                type: 'data',
+                array: nativeAotExternalSdData,
+                visible: true
+            }
+        },
+        {
+            name: 'Reguläre CLR Intern',
+            x: xAxisValues,
+            y: regularInternalData,
+            type: 'bar',
+            text: mapText(regularInternalData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,136,209)'
+            },
+            error_y: {
+                type: 'data',
+                array: regularInternalSdData,
+                visible: true
+            }
+        },
+        {
+            name: 'Reguläre CLR Extern',
+            x: xAxisValues,
+            y: regularExternalData,
+            type: 'bar',
+            text: mapText(regularExternalData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,85,128)'
+            },
+            error_y: {
+                type: 'data',
+                array: regularExternalSdData,
+                visible: true
+            }
+        }
+    ];
+
+    const layout = {
+        title: 'Startup-Zeiten für x64, intern und extern gemessen',
+        barmode: 'group',
+        yaxis: {
+            title: 'Dauer in ms'
+        }
+    }
+
+    Plotly.newPlot('chart', data, layout);
+
+</script>
+</body>
+</html>
