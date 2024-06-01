@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Spike Load Test x64</title>
+</head>
+<body>
+<div id="chart" style="width: 1000px; height: 700px"></div>
+
+<script>
+    const xAxisValues = ['Windows 11 x64 (16 CPU Kerne)', 'Alpine 3.19 x64 in Docker (limitiert auf 4 CPU Kerne)', ];
+
+    const nativeAotData = [80838.48, 19067.67];
+    const regularData = [82809.24, 19224.64];
+
+    const mapText = values => values.map(v => `${v} Requests/s`);
+    const data = [
+        {
+            name: 'Native AOT',
+            x: xAxisValues,
+            y: nativeAotData,
+            type: 'bar',
+            text: mapText(nativeAotData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,191,62)'
+            }
+        },
+        {
+            name: 'Reguläre CLR',
+            x: xAxisValues,
+            y: regularData,
+            type: 'bar',
+            text: mapText(regularData),
+            textposition: 'auto',
+            insidetextanchor: 'middle',
+            marker: {
+                color: 'rgb(0,136,209)'
+            }
+        }
+    ];
+
+    const layout = {
+        title: 'Spike Load Test',
+        barmode: 'group',
+        yaxis: {
+            title: 'Requests pro Sekunde'
+        }
+    }
+
+    Plotly.newPlot('chart', data, layout);
+
+</script>
+</body>
+</html>
