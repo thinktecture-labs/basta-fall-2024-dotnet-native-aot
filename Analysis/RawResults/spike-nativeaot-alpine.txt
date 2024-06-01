@@ -1,0 +1,38 @@
+
+          /\      |‾‾| /‾‾/   /‾‾/
+     /\  /  \     |  |/  /   /  /
+    /  \/    \    |     (   /   ‾‾\
+   /          \   |  |\  \ |  (‾)  |
+  / __________ \  |__| \__\ \_____/ .io
+
+  execution: local
+     script: .\spike-test.js
+     output: -
+
+  scenarios: (100.00%) 1 scenario, 15 max VUs, 1m0s max duration (incl. graceful stop):
+           * default: 15 looping VUs for 30s (gracefulStop: 30s)
+
+
+     ✓ OK
+
+     checks.........................: 100.00% ✓ 572045       ✗ 0
+     data_received..................: 415 MB  14 MB/s
+     data_sent......................: 49 MB   1.6 MB/s
+     http_req_blocked...............: avg=1.27µs   min=0s med=0s      max=7.69ms  p(90)=0s     p(95)=0s
+     http_req_connecting............: avg=29ns     min=0s med=0s      max=1.18ms  p(90)=0s     p(95)=0s
+     http_req_duration..............: avg=743.29µs min=0s med=540.1µs max=7.93ms  p(90)=1.06ms p(95)=1.1ms
+       { expected_response:true }...: avg=743.29µs min=0s med=540.1µs max=7.93ms  p(90)=1.06ms p(95)=1.1ms
+     http_req_failed................: 0.00%   ✓ 0            ✗ 572045
+     http_req_receiving.............: avg=26.36µs  min=0s med=0s      max=2.12ms  p(90)=0s     p(95)=237.77µs
+     http_req_sending...............: avg=5.26µs   min=0s med=0s      max=1.51ms  p(90)=0s     p(95)=0s
+     http_req_tls_handshaking.......: avg=0s       min=0s med=0s      max=0s      p(90)=0s     p(95)=0s
+     http_req_waiting...............: avg=711.66µs min=0s med=535.8µs max=7.93ms  p(90)=1.06ms p(95)=1.08ms
+     http_reqs......................: 572045  19067.671034/s
+     iteration_duration.............: avg=781.7µs  min=0s med=625.9µs max=13.42ms p(90)=1.07ms p(95)=1.12ms
+     iterations.....................: 572045  19067.671034/s
+     vus............................: 15      min=15         max=15
+     vus_max........................: 15      min=15         max=15
+
+
+running (0m30.0s), 00/15 VUs, 572045 complete and 0 interrupted iterations
+default ✓ [======================================] 15 VUs  30s

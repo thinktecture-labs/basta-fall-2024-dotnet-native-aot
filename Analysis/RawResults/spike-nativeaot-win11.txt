@@ -1,0 +1,38 @@
+
+          /\      |‾‾| /‾‾/   /‾‾/
+     /\  /  \     |  |/  /   /  /
+    /  \/    \    |     (   /   ‾‾\
+   /          \   |  |\  \ |  (‾)  |
+  / __________ \  |__| \__\ \_____/ .io
+
+  execution: local
+     script: .\spike-test.js
+     output: -
+
+  scenarios: (100.00%) 1 scenario, 15 max VUs, 1m0s max duration (incl. graceful stop):
+           * default: 15 looping VUs for 30s (gracefulStop: 30s)
+
+
+     ✓ OK
+
+     checks.........................: 100.00% ✓ 2425219     ✗ 0
+     data_received..................: 1.8 GB  59 MB/s
+     data_sent......................: 206 MB  6.9 MB/s
+     http_req_blocked...............: avg=1.34µs   min=0s med=0s max=5.99ms  p(90)=0s      p(95)=0s
+     http_req_connecting............: avg=6ns      min=0s med=0s max=1ms     p(90)=0s      p(95)=0s
+     http_req_duration..............: avg=139.14µs min=0s med=0s max=15.45ms p(90)=998.9µs p(95)=1ms
+       { expected_response:true }...: avg=139.14µs min=0s med=0s max=15.45ms p(90)=998.9µs p(95)=1ms
+     http_req_failed................: 0.00%   ✓ 0           ✗ 2425219
+     http_req_receiving.............: avg=22.28µs  min=0s med=0s max=14.49ms p(90)=0s      p(95)=0s
+     http_req_sending...............: avg=6.11µs   min=0s med=0s max=6.32ms  p(90)=0s      p(95)=0s
+     http_req_tls_handshaking.......: avg=0s       min=0s med=0s max=0s      p(90)=0s      p(95)=0s
+     http_req_waiting...............: avg=110.73µs min=0s med=0s max=15.45ms p(90)=537.9µs p(95)=1ms
+     http_reqs......................: 2425219 80838.48276/s
+     iteration_duration.............: avg=179.96µs min=0s med=0s max=15.45ms p(90)=999.8µs p(95)=1ms
+     iterations.....................: 2425219 80838.48276/s
+     vus............................: 15      min=15        max=15
+     vus_max........................: 15      min=15        max=15
+
+
+running (0m30.0s), 00/15 VUs, 2425219 complete and 0 interrupted iterations
+default ✓ [======================================] 15 VUs  30s
